@@ -6,3 +6,7 @@ Foi desenvolvido um chat bot para responder sobre previsão do tempo.
 Api Utilizada
 
 https://hgbrasil.com/
+
+Bot
+
+@pwatecnologiabot
