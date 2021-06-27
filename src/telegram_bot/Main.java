@@ -22,7 +22,6 @@ import com.pengrad.telegrambot.response.BaseResponse;
 import com.pengrad.telegrambot.response.GetUpdatesResponse;
 import com.pengrad.telegrambot.response.SendResponse;
 
-import telegra_bot.machine.Mensagem;
 import telegram_bot.dto.TimeInformation;
 import telegram_bot.service.ProcessadorMensagem;
 
@@ -36,7 +35,7 @@ public class Main {
 		
 		
 		// Criacao do objeto bot com as informacoes de acesso.
-		TelegramBot bot = new TelegramBot("xxxxxxxx");
+		TelegramBot bot = new TelegramBot("1757162368:AAHWusQarLBDDO2Q7mlA-Iugg_nArJlUjG8");
 
 		// Objeto responsavel por receber as mensagens.
 		GetUpdatesResponse updatesResponse;
@@ -94,7 +93,7 @@ public class Main {
 	}
 	
 	public static void loadTimeInformation() throws IOException {
-		URL url = new URL("https://api.hgbrasil.com/weather?key=xxxx");
+		URL url = new URL("https://api.hgbrasil.com/weather?key=c71a8c2d");
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		BufferedReader br = new BufferedReader(new InputStreamReader((con.getInputStream())));
 

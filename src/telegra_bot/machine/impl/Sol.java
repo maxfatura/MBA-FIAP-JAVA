@@ -44,4 +44,9 @@ public class Sol implements Mensagem {
 		return false;
 	}
 
+	@Override
+	public Boolean isFinalDeSemana() {
+		return false;
+	}
+
 }

@@ -2,9 +2,17 @@ package telegra_bot.machine.impl;
 
 import telegra_bot.machine.Mensagem;
 
-public class Chuva implements Mensagem {
-	
+public class FinalSemana implements Mensagem {
+
 	private String mensagem;
+	
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
 
 	@Override
 	public Boolean isTemperatura() {
@@ -13,7 +21,7 @@ public class Chuva implements Mensagem {
 
 	@Override
 	public Boolean isChuva() {
-		return true;
+		return false;
 	}
 
 	@Override
@@ -37,18 +45,8 @@ public class Chuva implements Mensagem {
 	}
 
 	@Override
-	public String getMensagem() {
-		
-		return mensagem;
-	}
-
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
-	}
-
-	@Override
 	public Boolean isFinalDeSemana() {
-		return false;
+		return true;
 	}
 
 }

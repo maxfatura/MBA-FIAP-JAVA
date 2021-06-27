@@ -2,11 +2,13 @@ package telegram_bot.service;
 
 import telegra_bot.machine.Mensagem;
 import telegra_bot.machine.impl.Chuva;
+import telegra_bot.machine.impl.FinalSemana;
 import telegra_bot.machine.impl.NotFound;
 import telegra_bot.machine.impl.Nublado;
 import telegra_bot.machine.impl.Previsao;
 import telegra_bot.machine.impl.Sol;
 import telegra_bot.machine.impl.Temperatura;
+import telegram_bot.dto.Forecast;
 import telegram_bot.dto.TimeInformation;
 
 public class ProcessadorMensagem {
@@ -14,7 +16,7 @@ public class ProcessadorMensagem {
 	private Mensagem tipoMensagem;
 	
 	public Mensagem processar(String pergunta) {
-		if(pergunta.matches("(?i).*ch.*v.*")) {
+		if(pergunta.matches("(?i).*ch.*v.*") && !(pergunta.matches("(?i).*fi.*") || pergunta.matches("(?i).*s.*bado.*"))) {
 			 tipoMensagem = new Chuva();
 		} else if(pergunta.matches("(?i).*sol.*")) { 
 			tipoMensagem = new Sol();
@@ -24,6 +26,8 @@ public class ProcessadorMensagem {
 			tipoMensagem = new Temperatura();
 		} else if( pergunta.matches("(?i).*nubl.*")) {
 			tipoMensagem = new Nublado();
+		} else if( pergunta.matches("(?i).*fi.*") || pergunta.matches("(?i).*s.*bado.*")) {
+			tipoMensagem = new FinalSemana();
 		} else {
 			tipoMensagem = new NotFound();
 		}
@@ -64,7 +68,21 @@ public class ProcessadorMensagem {
 		if(mensagem.isNotFound()) {
 			resposta = "Não entendi sua pergunta, mas vou te informar a previsão do tempo: "+timeInformation.getResults().getDescription()+" e a temperatura esta em "+timeInformation.getResults().getTemp()+" Graus. Quer saber sobre chuva, tempo nublado, previsão do tempo, tente outra pergunta";
 		}
+		if(mensagem.isFinalDeSemana()) {
+			resposta = getFinalDeSemana(timeInformation);
+		}
+		
   	  return resposta;
+	}
+	
+	public String getFinalDeSemana(TimeInformation timeInformation) {
+		String mensagemRetorno = null;
+		for(Forecast item : timeInformation.getResults().getForecast()) {
+			if((item.getWeekday().equals("Sáb") || item.getWeekday().equals("Sat")) && !timeInformation.getResults().getDate().contains(item.getDate().substring(3,5)+"/"+item.getDate().substring(1,3))) {
+				mensagemRetorno = "Este final de semana dia "+item.getDate().substring(3,5)+"/"+item.getDate().substring(1,3)+" estará: com a máxima: "+item.getMax()+" mínima: "+item.getMin();
+			}
+		}
+		return mensagemRetorno;
 	}
 
 }

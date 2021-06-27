@@ -44,4 +44,9 @@ public class NotFound implements Mensagem {
 		return true;
 	}
 
+	@Override
+	public Boolean isFinalDeSemana() {
+		return false;
+	}
+
 }

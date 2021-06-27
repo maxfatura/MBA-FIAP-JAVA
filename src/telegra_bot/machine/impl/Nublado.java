@@ -45,4 +45,9 @@ public class Nublado implements Mensagem {
 		return false;
 	}
 
+	@Override
+	public Boolean isFinalDeSemana() {
+		return false;
+	}
+
 }

@@ -9,5 +9,6 @@ public interface Mensagem {
 	Boolean isPrevisao();
 	Boolean isNotFound();
 	String getMensagem();
+	Boolean isFinalDeSemana();
 	void setMensagem(String mensagem);
 }
