@@ -35,7 +35,7 @@ public class Main {
 		
 		
 		// Criacao do objeto bot com as informacoes de acesso.
-		TelegramBot bot = new TelegramBot("1757162368:AAHWusQarLBDDO2Q7mlA-Iugg_nArJlUjG8");
+		TelegramBot bot = new TelegramBot("");
 
 		// Objeto responsavel por receber as mensagens.
 		GetUpdatesResponse updatesResponse;
@@ -67,10 +67,10 @@ public class Main {
 				// Atualizacao do off-set.
 				m = update.updateId() + 1;
 				if(update.message().text().equals("/start")) {
-					sendResponse = bot.execute(new SendMessage(update.message().chat().id(), "Ol·, vamos falar sobre previs„o do tempo ? qual a sua d˙vida ?"));
+					sendResponse = bot.execute(new SendMessage(update.message().chat().id(), "Ol√°, vamos falar sobre previs√£o do tempo ? qual a sua d√∫vida ?"));
 					continue;
 				} 
-				// Carregar previs„o do tempo
+				// Carregar previs√£o do tempo
 				loadTimeInformation();
 				//Processar Mensagem
 				String mensagem = processadorMensagem.getMensagem(update.message().text(), timeInformation);
@@ -93,7 +93,7 @@ public class Main {
 	}
 	
 	public static void loadTimeInformation() throws IOException {
-		URL url = new URL("https://api.hgbrasil.com/weather?key=c71a8c2d");
+		URL url = new URL("https://api.hgbrasil.com/weather?key=");
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		BufferedReader br = new BufferedReader(new InputStreamReader((con.getInputStream())));
 
